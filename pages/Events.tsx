@@ -57,9 +57,19 @@ const Events: React.FC = () => {
 
              {/* Fighter Faceoff Graphic (Mockup) */}
              <div className="hidden md:flex md:w-1/2 justify-center relative h-96 items-end">
-                <img src={nextEventFighterA?.image} alt="Fighter A" className="h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 z-10 -mr-10 drop-shadow-2xl mask-image-gradient" />
+                <img 
+                  src={nextEventFighterA?.image} 
+                  alt="Fighter A" 
+                  className="h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 z-10 -mr-10 drop-shadow-2xl"
+                  style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
+                />
                 <div className="font-heading font-black text-9xl italic text-apex-orange z-20 relative -mb-4 drop-shadow-lg">VS</div>
-                <img src={nextEventFighterB?.image} alt="Fighter B" className="h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 z-10 -ml-10 drop-shadow-2xl transform -scale-x-100" />
+                <img 
+                  src={nextEventFighterB?.image} 
+                  alt="Fighter B" 
+                  className="h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 z-10 -ml-10 drop-shadow-2xl transform -scale-x-100" 
+                  style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
+                />
              </div>
           </div>
         </section>
