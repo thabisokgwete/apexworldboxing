@@ -1,3 +1,4 @@
+
 import { Fighter, Event } from './types';
 
 export const FIGHTERS: Fighter[] = [
@@ -11,7 +12,7 @@ export const FIGHTERS: Fighter[] = [
     reach: '82"',
     stance: 'Orthodox',
     country: 'UK',
-    image: 'https://picsum.photos/400/600?random=1',
+    image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=800&auto=format&fit=crop', // Intense portrait black boxer
     description: 'A devastating puncher with an iron chin. The current ABE Heavyweight Champion.'
   },
   {
@@ -24,7 +25,7 @@ export const FIGHTERS: Fighter[] = [
     reach: '79"',
     stance: 'Southpaw',
     country: 'Mexico',
-    image: 'https://picsum.photos/400/600?random=2',
+    image: 'https://images.unsplash.com/photo-1615117970747-4906ec20721e?q=80&w=800&auto=format&fit=crop', // Black boxer in ring
     description: 'Known for his technical brilliance and counter-punching ability.'
   },
   {
@@ -37,7 +38,7 @@ export const FIGHTERS: Fighter[] = [
     reach: '66"',
     stance: 'Orthodox',
     country: 'USA',
-    image: 'https://picsum.photos/400/600?random=3',
+    image: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=800&auto=format&fit=crop', // Female boxer action
     description: 'The queen of the bantamweight division. Unstoppable pace.'
   },
   {
@@ -50,7 +51,7 @@ export const FIGHTERS: Fighter[] = [
     reach: '68"',
     stance: 'Orthodox',
     country: 'Russia',
-    image: 'https://picsum.photos/400/600?random=4',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=800&auto=format&fit=crop', // Female boxer athletic
     description: 'Precision striker with surgical accuracy.'
   },
   {
@@ -63,7 +64,7 @@ export const FIGHTERS: Fighter[] = [
     reach: '74"',
     stance: 'Southpaw',
     country: 'Ghana',
-    image: 'https://picsum.photos/400/600?random=5',
+    image: 'https://images.unsplash.com/photo-1509563408-7b98d3637683?q=80&w=800&auto=format&fit=crop', // Boxer intense shadow
     description: 'Explosive speed and unorthodox movement.'
   }
 ];
@@ -79,7 +80,7 @@ export const EVENTS: Event[] = [
       fighterBId: 'f2'
     },
     undercard: ['Mensah vs. Johnson', 'Volkova vs. Davis', 'Chen vs. O\'Malley'],
-    price: '$79.99',
+    price: 'R49.99',
     status: 'Upcoming'
   },
   {
@@ -92,7 +93,7 @@ export const EVENTS: Event[] = [
       fighterBId: 'f4'
     },
     undercard: ['Smith vs. Brown', 'Lee vs. Park'],
-    price: '$49.99',
+    price: 'R49.99',
     status: 'Upcoming'
   },
   {
@@ -105,8 +106,8 @@ export const EVENTS: Event[] = [
       fighterBId: 'f5' 
     },
     undercard: ['Siba vs. Null', 'Jenkins vs. Tate'],
-    price: '$79.99',
-    status: 'Completed' // Added for Past Results tab
+    price: 'R49.99',
+    status: 'Completed'
   }
 ];
 
@@ -116,7 +117,7 @@ export const MERCHANDISE = [
     name: 'ABE Pro Fight Gloves',
     price: '$129.99',
     category: 'Equipment',
-    image: 'https://picsum.photos/400/400?random=101',
+    image: 'https://images.unsplash.com/photo-1616004663363-d34346859345?q=80&w=800&auto=format&fit=crop', // Real Boxing Gloves
     tag: 'Best Seller'
   },
   {
@@ -124,14 +125,14 @@ export const MERCHANDISE = [
     name: 'Champion Gold Hoodie',
     price: '$65.00',
     category: 'Apparel',
-    image: 'https://picsum.photos/400/400?random=102'
+    image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format&fit=crop', // Hoodie
   },
   {
     id: 'm3',
     name: 'Official Ring Canvas Tee',
     price: '$35.00',
     category: 'Apparel',
-    image: 'https://picsum.photos/400/400?random=103',
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop', // T-Shirt
     tag: 'New'
   },
   {
@@ -139,21 +140,21 @@ export const MERCHANDISE = [
     name: 'Legacy Snapback',
     price: '$29.99',
     category: 'Accessories',
-    image: 'https://picsum.photos/400/400?random=104'
+    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop', // Cap
   },
   {
     id: 'm5',
     name: 'Wraps & Tape Kit',
     price: '$15.00',
     category: 'Accessories',
-    image: 'https://picsum.photos/400/400?random=105'
+    image: 'https://images.unsplash.com/photo-1629252080344-09c313a07b7b?q=80&w=800&auto=format&fit=crop', // Wraps/Texture
   },
   {
     id: 'm6',
     name: 'Training Tech Tank',
     price: '$45.00',
     category: 'Apparel',
-    image: 'https://picsum.photos/400/400?random=106'
+    image: 'https://images.unsplash.com/photo-1503342394128-c104d54dba01?q=80&w=800&auto=format&fit=crop', // Sportswear
   }
 ];
 
@@ -164,7 +165,7 @@ export const NEWS_UPDATES = [
     time: "2 hours ago",
     category: "Drama",
     author: "Mike Bohn",
-    image: "https://picsum.photos/800/600?random=300",
+    image: "https://images.unsplash.com/photo-1563297244-6e828135832a?q=80&w=800&auto=format&fit=crop", // Microphones/Press
     summary: "Tensions reached a boiling point in Las Vegas today as the heavyweight champion flipped the table and exited the stage following a heated exchange about his training camp."
   },
   {
@@ -173,7 +174,7 @@ export const NEWS_UPDATES = [
     time: "5 hours ago",
     category: "Discipline",
     author: "Sarah Lane",
-    image: "https://picsum.photos/800/600?random=301",
+    image: "https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=800&auto=format&fit=crop", // Stare down/Intense
     summary: "The commission has handed down a hefty fine to Kofi Mensah following the incident at the weigh-ins. Mensah's team plans to appeal the decision immediately."
   },
   {
@@ -182,22 +183,22 @@ export const NEWS_UPDATES = [
     time: "1 day ago",
     category: "Business",
     author: "Fight Beat Staff",
-    image: "https://picsum.photos/800/600?random=302",
+    image: "https://images.unsplash.com/photo-1554774853-71015e28c1ea?q=80&w=800&auto=format&fit=crop", // Signing/Pen
     summary: "The Bantamweight queen isn't going anywhere. ABE officials confirmed today that Volkova has put pen to paper on the most lucrative deal in division history."
   }
 ];
 
-export const VULGAR_TEASERS = [
+export const BROADCAST_HIGHLIGHTS = [
   {
     id: 1,
-    title: "UNFILTERED: The Sizwe Rant",
+    title: "Sizwe Press Conference Highlights",
     duration: "03:12",
-    image: "https://picsum.photos/400/250?random=201"
+    image: "https://images.unsplash.com/photo-1505243542579-da5adfe8338f?q=80&w=800&auto=format&fit=crop" // Angry/Shouting
   },
   {
     id: 2,
-    title: "Backstage Brawl: Full Footage",
+    title: "Official Weigh-In Recap",
     duration: "01:45",
-    image: "https://picsum.photos/400/250?random=202"
+    image: "https://images.unsplash.com/photo-1509563408-7b98d3637683?q=80&w=800&auto=format&fit=crop" // Blurred action
   }
 ];
