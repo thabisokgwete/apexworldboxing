@@ -1,22 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { EVENTS, FIGHTERS, NEWS_UPDATES, VULGAR_TEASERS, MERCHANDISE } from '../constants';
+import { EVENTS, FIGHTERS, NEWS_UPDATES, BROADCAST_HIGHLIGHTS, MERCHANDISE } from '../constants';
 import EventCard from '../components/EventCard';
 import FighterCard from '../components/FighterCard';
-import { ArrowRight, Zap, Trophy, Flame, Play, AlertTriangle, Newspaper, TrendingUp, ShoppingBag, Clock } from 'lucide-react';
+import ImageUploader from '../components/ImageUploader';
+import { ArrowRight, Zap, Trophy, Flame, Play, Radio, Newspaper, TrendingUp, ShoppingBag, Clock } from 'lucide-react';
 
 const Home: React.FC = () => {
   const nextEvent = EVENTS[0];
-  const featuredFighters = FIGHTERS.slice(0, 3);
   
-  const mainEventFighters = {
-    a: FIGHTERS.find(f => f.id === nextEvent.mainEvent.fighterAId),
-    b: FIGHTERS.find(f => f.id === nextEvent.mainEvent.fighterBId),
-  };
-
-  // Determine mover of the week (Mock logic: just pick the second fighter)
-  const moverOfTheWeek = FIGHTERS[1];
-
   return (
     <div className="pb-20 bg-white">
       {/* Hero Section */}
@@ -24,11 +16,11 @@ const Home: React.FC = () => {
         {/* Background Video/Image Placeholder */}
         <div className="absolute inset-0 z-0 bg-zinc-100">
           <img 
-            src="https://picsum.photos/1920/1080?grayscale" 
-            alt="Boxing Arena" 
-            className="w-full h-full object-cover opacity-20"
+            src="https://images.unsplash.com/photo-1614869818815-56543b35582f?q=80&w=1920&auto=format&fit=crop" 
+            alt="Boxing Arena Spotlight" 
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/20 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/50 to-white" />
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
         </div>
 
@@ -47,7 +39,7 @@ const Home: React.FC = () => {
           </h2>
           
           <p className="font-sans text-xl md:text-2xl text-zinc-600 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
-            A world of personality clashes. A world of triumph and loss.
+            A world of triumph and loss.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -77,13 +69,15 @@ const Home: React.FC = () => {
             
             {/* Featured Story (Left Large) */}
             <div className="lg:col-span-7 relative group cursor-pointer overflow-hidden h-[600px] lg:h-auto border-r border-zinc-200">
-              <img 
-                src={NEWS_UPDATES[0].image} 
-                alt="News Featured" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              <ImageUploader 
+                defaultSrc={NEWS_UPDATES[0].image}
+                storageKey="home_featured_news"
+                alt="News Featured"
+                className="w-full h-full"
+                imgClassName="transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
-              <div className="absolute bottom-0 left-0 p-10 w-full">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 p-10 w-full pointer-events-none">
                  <span className="inline-block bg-apex-orange text-black text-sm font-bold uppercase px-3 py-1 mb-4 rounded-sm">
                    {NEWS_UPDATES[0].category}
                  </span>
@@ -106,191 +100,110 @@ const Home: React.FC = () => {
                {NEWS_UPDATES.slice(1).map((news, index) => (
                  <div key={news.id} className={`flex-1 relative group cursor-pointer overflow-hidden bg-white p-8 border-b border-zinc-200 ${index === NEWS_UPDATES.length - 2 ? 'border-b-0' : ''} hover:bg-zinc-100 transition-colors`}>
                     <div className="flex gap-6 h-full">
-                       <div className="w-1/3 relative overflow-hidden aspect-[4/3]">
-                          <img src={news.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Thumbnail"/>
+                       <div className="w-1/3 relative overflow-hidden">
+                          <ImageUploader 
+                            defaultSrc={news.image}
+                            storageKey={`home_news_${news.id}`}
+                            alt={news.headline}
+                            className="w-full h-full"
+                            imgClassName="group-hover:scale-110 transition-transform duration-500"
+                          />
                        </div>
-                       <div className="w-2/3 flex flex-col justify-center">
-                          <div className="flex items-center justify-between mb-3">
-                             <span className="text-xs font-bold uppercase tracking-widest text-apex-orange border border-apex-orange px-1.5 rounded-sm">{news.category}</span>
-                             <span className="text-xs text-zinc-400 font-bold uppercase">{news.time}</span>
+                       <div className="w-2/3 flex flex-col justify-between py-1">
+                          <div>
+                            <span className="text-apex-orange text-xs font-bold uppercase tracking-widest mb-2 block">{news.category}</span>
+                            <h4 className="font-heading text-xl font-bold uppercase leading-tight text-zinc-900 group-hover:text-apex-orange transition-colors">
+                              {news.headline}
+                            </h4>
                           </div>
-                          <h4 className="font-heading text-2xl font-bold text-black uppercase leading-tight mb-3 group-hover:text-apex-orange transition-colors">
-                            {news.headline}
-                          </h4>
-                          <p className="text-sm text-zinc-600 line-clamp-2 mb-4 leading-relaxed font-medium">
-                            {news.summary}
-                          </p>
-                          <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors flex items-center">
-                            Read Article <ArrowRight size={14} className="ml-1" />
-                          </span>
+                          <div className="flex items-center text-xs text-zinc-400 font-bold uppercase tracking-widest mt-4">
+                             <span>{news.time}</span>
+                          </div>
                        </div>
                     </div>
                  </div>
                ))}
-               
-               {/* View All Link */}
-               <div className="bg-zinc-900 p-6 text-center hover:bg-apex-orange transition-colors cursor-pointer group mt-auto">
-                 <span className="text-white font-heading font-bold uppercase tracking-widest text-base flex items-center justify-center">
-                    View All News <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
-                 </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Broadcast Highlights / Latest Clips */}
+      <section className="py-20 bg-zinc-900 text-white overflow-hidden relative">
+         <div className="absolute top-0 right-0 w-96 h-96 bg-apex-orange/10 rounded-full blur-[100px] pointer-events-none"></div>
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+               <div>
+                  <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter mb-2 flex items-center">
+                    <Play className="text-apex-orange mr-4 fill-current" size={40} /> Vulgar Broadcast
+                  </h2>
+                  <p className="text-zinc-500 text-lg max-w-xl">
+                     Exclusive interviews, weigh-in drama, and fight highlights.
+                  </p>
                </div>
+               <Link to="/vulgar" className="mt-6 md:mt-0 text-white font-bold uppercase tracking-widest border-b border-apex-orange pb-1 hover:text-apex-orange transition-colors">
+                  Watch All Clips
+               </Link>
             </div>
 
-          </div>
-        </div>
-      </section>
-
-      {/* Vulgar Highlights (Media Teaser) */}
-      <section className="bg-black py-24 overflow-hidden relative">
-        {/* Gritty Background Texture */}
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12">
-            <div>
-              <h2 className="font-heading font-black text-6xl md:text-8xl text-apex-orange uppercase tracking-tighter mb-4 leading-none">
-                Vulgar Broadcast
-              </h2>
-              <div className="flex items-center text-white mb-6">
-                <AlertTriangle size={20} className="mr-2 text-apex-orange" />
-                <span className="text-base font-bold uppercase tracking-widest">Explicit Content</span>
-              </div>
-              <h3 className="font-heading text-5xl font-bold text-zinc-500 uppercase tracking-tighter leading-none">
-                Uncensored <br/>Content
-              </h3>
-            </div>
-            <Link to="/broadcasting" className="mt-8 md:mt-0 text-white hover:text-apex-orange font-heading font-bold uppercase tracking-widest text-xl flex items-center transition-colors">
-              Enter Vulgar <ArrowRight size={24} className="ml-3" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {VULGAR_TEASERS.map((video) => (
-              <Link to="/broadcasting" key={video.id} className="group relative aspect-video bg-zinc-900 overflow-hidden border border-zinc-800 hover:border-apex-orange transition-colors shadow-2xl">
-                <img src={video.image} alt={video.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center pl-1 group-hover:scale-110 group-hover:bg-apex-orange group-hover:border-apex-orange transition-all">
-                    <Play size={32} className="text-white fill-white" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+               {BROADCAST_HIGHLIGHTS.map(clip => (
+                  <div key={clip.id} className="group cursor-pointer">
+                     <div className="relative aspect-video bg-zinc-800 overflow-hidden mb-4 border border-zinc-800 group-hover:border-apex-orange transition-colors">
+                        <img src={clip.image} alt={clip.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                           <div className="w-16 h-16 rounded-full bg-apex-orange/90 flex items-center justify-center transform scale-75 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
+                              <Play className="fill-black text-black ml-1" size={24} />
+                           </div>
+                        </div>
+                        <div className="absolute bottom-3 right-3 bg-black text-white text-xs font-bold px-2 py-1 rounded-sm">
+                           {clip.duration}
+                        </div>
+                     </div>
+                     <h3 className="font-heading text-2xl font-bold uppercase leading-tight group-hover:text-apex-orange transition-colors">
+                        {clip.title}
+                     </h3>
                   </div>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black to-transparent">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-heading text-2xl font-bold text-white uppercase italic">{video.title}</h3>
-                    <span className="text-sm font-bold bg-red-600 text-white px-2 py-1 rounded-sm">18+</span>
+               ))}
+            </div>
+         </div>
+      </section>
+
+      {/* Merchandise Teaser */}
+      <section className="py-24 bg-white">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+               <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tighter mb-4 text-black">
+                  Wear The <span className="text-apex-orange">Brand</span>
+               </h2>
+               <Link to="/shop" className="inline-flex items-center text-zinc-500 font-bold uppercase tracking-widest hover:text-black transition-colors">
+                  Visit Official Shop <ArrowRight size={16} className="ml-2" />
+               </Link>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+               {MERCHANDISE.slice(0, 4).map(item => (
+                  <div key={item.id} className="group cursor-pointer">
+                     <div className="bg-zinc-50 aspect-square overflow-hidden mb-4 relative">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" />
+                        {item.tag && (
+                           <div className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold uppercase px-2 py-1">
+                              {item.tag}
+                           </div>
+                        )}
+                     </div>
+                     <div className="text-center">
+                        <h3 className="font-heading text-lg font-bold uppercase text-black mb-1 group-hover:text-apex-orange transition-colors">
+                           {item.name}
+                        </h3>
+                        <p className="font-sans font-bold text-zinc-500">{item.price}</p>
+                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Upcoming Event Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-heading font-bold uppercase text-black flex items-center">
-              <Zap className="text-apex-orange mr-3" size={32} /> Featured Event
-            </h2>
-          </div>
-          <EventCard 
-            event={nextEvent} 
-            fighterA={mainEventFighters.a}
-            fighterB={mainEventFighters.b}
-            featured={true}
-          />
-        </div>
-      </section>
-
-      {/* Roster Preview & Mover of the Week */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="text-5xl font-heading font-bold uppercase text-black tracking-tight">Top Fighters</h2>
-          <Link to="/motion" className="group flex items-center text-zinc-500 hover:text-apex-orange transition-colors text-base font-bold uppercase tracking-widest">
-            Full Roster <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Mover of the Week Widget */}
-          <div className="lg:col-span-1 bg-zinc-50 border border-zinc-200 p-8 flex flex-col justify-between shadow-sm">
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="p-2.5 bg-green-100 rounded-full">
-                  <TrendingUp size={24} className="text-green-600" />
-                </div>
-                <span className="font-heading font-bold uppercase text-zinc-900 text-lg">Mover of the Week</span>
-              </div>
-              <h3 className="font-heading text-4xl font-bold text-black uppercase leading-none mb-2">{moverOfTheWeek.name}</h3>
-              <p className="text-zinc-500 text-base uppercase tracking-wider mb-6">"{moverOfTheWeek.nickname}"</p>
-              <div className="text-5xl font-mono font-bold text-apex-orange">+150 <span className="text-base text-zinc-400 font-sans font-normal">Points</span></div>
+               ))}
             </div>
-            <div className="mt-8 pt-8 border-t border-zinc-200">
-              <p className="text-sm text-zinc-600 leading-relaxed font-medium">
-                Sizwe climbs the heavyweight rankings after a stunning KO victory in Mexico City last weekend.
-              </p>
-              <Link to="/motion" className="mt-6 block w-full text-center bg-white border border-zinc-300 py-3 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white hover:border-black transition-colors">
-                View Standings
-              </Link>
-            </div>
-          </div>
-
-          {/* Regular Fighter Cards */}
-          {featuredFighters.map(fighter => (
-            <FighterCard key={fighter.id} fighter={fighter} />
-          ))}
-        </div>
+         </div>
       </section>
 
-      {/* Fight Kit Drops (Shop Integration) */}
-      <section className="bg-white py-24 border-t border-zinc-100 mt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-16">
-             <div>
-               <h2 className="font-heading text-5xl font-bold uppercase text-black mb-3">Fight Kit Drops</h2>
-               <p className="text-zinc-500 text-xl">Fresh gear from the lab.</p>
-             </div>
-             <Link to="/shop" className="hidden md:flex items-center text-base font-bold uppercase tracking-widest text-black hover:text-apex-orange transition-colors">
-               Visit Shop <ShoppingBag size={20} className="ml-2" />
-             </Link>
-          </div>
-
-          {/* Horizontal Scroll Container */}
-          <div className="overflow-x-auto pb-8 scrollbar-hide">
-            <div className="flex space-x-8 w-max">
-              {MERCHANDISE.slice(0, 4).map((item) => (
-                <div key={item.id} className="w-80 group cursor-pointer">
-                  <div className="relative aspect-square bg-zinc-50 border border-zinc-100 mb-6 overflow-hidden">
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    {item.tag && <span className="absolute top-4 left-4 bg-black text-white text-xs font-bold uppercase px-3 py-1.5">{item.tag}</span>}
-                  </div>
-                  <h4 className="font-heading font-bold uppercase text-2xl leading-tight group-hover:text-apex-orange transition-colors mb-1">{item.name}</h4>
-                  <p className="text-zinc-500 font-bold text-lg">{item.price}</p>
-                </div>
-              ))}
-              {/* View All Card */}
-              <Link to="/shop" className="w-64 bg-zinc-900 flex flex-col items-center justify-center text-white hover:bg-apex-orange transition-colors group">
-                 <span className="font-heading font-bold uppercase text-2xl mb-3">View All</span>
-                 <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-32 bg-zinc-100 overflow-hidden border-t border-zinc-200">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-apex-orange to-transparent opacity-50"></div>
-        <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
-          <h2 className="font-heading text-6xl font-bold text-black uppercase mb-8">Who is Number One?</h2>
-          <p className="text-zinc-600 text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-            Track the season standings, analyze form guides, and see who is climbing the ranks in the Motion League.
-          </p>
-          <Link to="/motion" className="inline-flex items-center bg-black text-white px-10 py-5 font-heading font-bold uppercase tracking-widest hover:bg-apex-orange transition-colors shadow-xl text-lg">
-            View Standings <Trophy className="ml-3" size={24} />
-          </Link>
-        </div>
-      </section>
     </div>
   );
 };

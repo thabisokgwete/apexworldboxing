@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Play, Radio, Flame, Mic2, MessageSquare, AlertTriangle, Users, ThumbsUp, Zap } from 'lucide-react';
+import { Play, Radio, Flame, Mic2, MessageSquare, AlertTriangle, Users, ThumbsUp, Zap, Clock, Twitter, Camera } from 'lucide-react';
+import ImageUploader from '../components/ImageUploader';
 
 const FEATURED_STREAM = {
   title: "LIVE: Bad Boy Siba vs. Himothy Sizwe - The Final Confrontation",
@@ -8,6 +9,33 @@ const FEATURED_STREAM = {
   tags: ["Live Debate", "Heavyweight", "Explicit"]
 };
 
+const FEUD_TIMELINE = [
+  {
+    date: "YESTERDAY",
+    type: "Weigh-In",
+    icon: Camera,
+    title: "THE WEIGH-IN PUSH",
+    description: "Himothy Sizwe shoves Bad Boy Siba during the face-off. Security intervenes immediately. Fines expected.",
+    hasClip: true
+  },
+  {
+    date: "2 DAYS AGO",
+    type: "Social Media",
+    icon: Twitter,
+    title: "TWITTER WAR",
+    description: "Bad Boy Siba posts DMs from 2023 showing Himothy Sizwe asking for sparring advice. Himothy Sizwe calls them fake.",
+    hasClip: false
+  },
+  {
+    date: "1 WEEK AGO",
+    type: "Event",
+    icon: Mic2,
+    title: "THE PERSONAL INSULT",
+    description: "Sizwe brings up Siba's former trainer. The mood shifts from competitive to personal instantly.",
+    hasClip: false
+  }
+];
+
 const RECENT_CLIPS = [
   {
     id: 1,
@@ -15,7 +43,7 @@ const RECENT_CLIPS = [
     duration: "03:20",
     views: "2.4M",
     category: "Brawl",
-    image: "https://picsum.photos/800/450?random=20",
+    image: "https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=800&auto=format&fit=crop", // Stare down/Push
     hot: true
   },
   {
@@ -24,7 +52,7 @@ const RECENT_CLIPS = [
     duration: "08:15",
     views: "500K",
     category: "Trash Talk",
-    image: "https://picsum.photos/800/450?random=21",
+    image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=800&auto=format&fit=crop", // Female boxer talking
     hot: false
   },
   {
@@ -33,7 +61,7 @@ const RECENT_CLIPS = [
     duration: "05:50",
     views: "890K",
     category: "Interview",
-    image: "https://picsum.photos/800/450?random=22",
+    image: "https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=800&auto=format&fit=crop", // Boxer interview
     hot: true
   },
   {
@@ -42,7 +70,7 @@ const RECENT_CLIPS = [
     duration: "45:10",
     views: "1.2M",
     category: "Podcast",
-    image: "https://picsum.photos/800/450?random=23",
+    image: "https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?q=80&w=800&auto=format&fit=crop", // Mic/Studio
     hot: false
   }
 ];
@@ -59,13 +87,16 @@ const VulgarBroadcasting: React.FC = () => {
       </div>
 
       {/* Brand Header */}
-      <div className="bg-white pt-20 pb-12 border-b border-zinc-200 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
+      <div className="bg-black pt-20 pb-12 border-b border-zinc-800 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center md:text-left">
-            <h1 className="font-heading font-black text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-4">
-              Vulgar <span className="text-apex-orange">Broadcasting</span>
+            <h1 className="font-heading font-black text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-2 text-apex-orange">
+              Vulgar Broadcast
             </h1>
-            <p className="text-zinc-500 text-xl max-w-2xl font-light">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-zinc-400 uppercase tracking-widest mb-6">
+              Uncensored & Unscripted
+            </h2>
+            <p className="text-zinc-400 text-xl max-w-2xl font-light">
               Where the PR team has no power. Raw audio, uncensored opinions, and backstage access that television networks won't touch.
             </p>
         </div>
@@ -74,15 +105,21 @@ const VulgarBroadcasting: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         
         {/* Live Stream Container */}
-        <div className="bg-black border border-zinc-800 rounded-sm overflow-hidden mb-16 shadow-2xl relative group">
+        <div className="bg-black border border-zinc-800 rounded-sm overflow-hidden mb-12 shadow-2xl relative group">
           <div className="aspect-video bg-zinc-900 relative">
-             <img src="https://picsum.photos/1200/675?grayscale&blur=2" alt="Stream Preview" className="w-full h-full object-cover opacity-60" />
-             <div className="absolute inset-0 flex items-center justify-center">
-                <button className="bg-apex-orange text-black rounded-full p-6 hover:scale-110 transition-transform shadow-[0_0_30px_rgba(234,179,8,0.5)]">
+             <ImageUploader 
+               defaultSrc="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=1200&auto=format&fit=crop"
+               storageKey="vulgar_live_stream"
+               alt="Stream Preview"
+               className="w-full h-full"
+               imgClassName="opacity-60"
+             />
+             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <button className="bg-apex-orange text-black rounded-full p-6 shadow-[0_0_30px_rgba(234,179,8,0.5)]">
                    <Play size={40} className="fill-black" />
                 </button>
              </div>
-             <div className="absolute top-6 left-6 flex gap-3">
+             <div className="absolute top-6 left-6 flex gap-3 pointer-events-none">
                <span className="bg-red-600 text-white px-3 py-1 text-xs font-bold uppercase tracking-widest animate-pulse flex items-center">
                  <Radio size={12} className="mr-2" /> Live
                </span>
@@ -102,26 +139,44 @@ const VulgarBroadcasting: React.FC = () => {
                  <h2 className="font-heading text-3xl font-bold uppercase italic text-white mb-2">{FEATURED_STREAM.title}</h2>
                  <p className="text-zinc-400 max-w-3xl">{FEATURED_STREAM.description}</p>
               </div>
-              <div className="mt-6 md:mt-0 flex gap-4">
-                 <button className="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
-                    <MessageSquare size={18} /> <span>Chat</span>
-                 </button>
-                 <button className="flex items-center space-x-2 text-zinc-400 hover:text-apex-orange transition-colors text-sm font-bold uppercase tracking-widest">
-                    <Zap size={18} /> <span>Subscribe</span>
-                 </button>
-              </div>
             </div>
           </div>
+        </div>
+
+        {/* FEUD FEED - MOVED ABOVE CLIPS */}
+        <div className="bg-zinc-950 border border-zinc-800 p-8 shadow-2xl relative overflow-hidden mb-12">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-apex-orange/5 rounded-full blur-3xl"></div>
+            
+            <h2 className="relative z-10 font-heading font-black text-4xl md:text-5xl uppercase leading-none text-white mb-8">
+                Feud Feed: <span className="text-apex-orange">Bad <br className="hidden md:block" />Boy Siba vs. Himothy Sizwe</span>
+            </h2>
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-zinc-800 pt-8">
+                {FEUD_TIMELINE.map((event, idx) => (
+                    <div key={idx} className="relative pl-6 border-l border-zinc-800">
+                        <div className={`absolute -left-[3.5px] top-1.5 w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-red-600 animate-pulse' : 'bg-apex-orange'}`}></div>
+                        <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${idx === 0 ? 'text-white' : 'text-zinc-500'}`}>{event.date}</div>
+                        <h3 className="font-heading text-xl font-bold text-white uppercase mb-2 leading-tight">{event.title}</h3>
+                        <p className="text-zinc-400 text-sm leading-relaxed mb-3">
+                        {event.description}
+                        </p>
+                        {event.hasClip && (
+                        <button className="bg-black border border-zinc-700 text-white text-[10px] font-bold uppercase px-3 py-2 hover:bg-white hover:text-black hover:border-white transition-colors flex items-center">
+                            <Play size={10} className="mr-2" /> Watch Clip
+                        </button>
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
            
-           {/* Clips Column */}
+           {/* Clips Column (Left) */}
            <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-8">
                  <h3 className="font-heading text-3xl font-bold uppercase text-black flex items-center">
-                   <Flame className="text-apex-orange mr-3" /> Trending Clips
+                   <Flame className="text-apex-orange mr-3" /> Vulgar Shows
                  </h3>
                  <div className="flex gap-2">
                     <button className="px-3 py-1 text-xs font-bold uppercase bg-black text-white">Hot</button>
@@ -133,8 +188,14 @@ const VulgarBroadcasting: React.FC = () => {
                  {RECENT_CLIPS.map((clip) => (
                    <div key={clip.id} className="flex flex-col sm:flex-row gap-6 group cursor-pointer border-b border-zinc-100 pb-6 last:border-0">
                       <div className="sm:w-64 aspect-video relative overflow-hidden bg-zinc-100 flex-shrink-0">
-                         <img src={clip.image} alt={clip.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                         <div className="absolute bottom-2 right-2 bg-black text-white text-[10px] font-bold px-1.5 py-0.5">
+                         <ImageUploader 
+                           defaultSrc={clip.image}
+                           storageKey={`vulgar_clip_${clip.id}`}
+                           alt={clip.title}
+                           className="w-full h-full"
+                           imgClassName="group-hover:scale-110 transition-transform duration-500"
+                         />
+                         <div className="absolute bottom-2 right-2 bg-black text-white text-[10px] font-bold px-1.5 py-0.5 pointer-events-none">
                             {clip.duration}
                          </div>
                       </div>
@@ -142,7 +203,6 @@ const VulgarBroadcasting: React.FC = () => {
                          <div className="flex items-center gap-3 mb-2">
                             <span className="text-xs font-bold uppercase text-apex-orange">{clip.category}</span>
                             <span className="text-xs text-zinc-400 uppercase">• {clip.views} Views</span>
-                            {clip.hot && <span className="text-[10px] font-bold uppercase bg-red-100 text-red-600 px-1.5 rounded-sm flex items-center"><Flame size={10} className="mr-1"/> Hot</span>}
                          </div>
                          <h4 className="font-heading text-xl font-bold uppercase text-black leading-tight group-hover:text-apex-orange transition-colors mb-2">
                             {clip.title}
@@ -160,16 +220,16 @@ const VulgarBroadcasting: React.FC = () => {
               </button>
            </div>
 
-           {/* Sidebar: Polls & Audio */}
+           {/* Sidebar: Polls (Right) */}
            <div className="space-y-12">
               
               {/* Daily Poll */}
-              <div className="bg-zinc-50 p-8 border border-zinc-200">
+              <div className="bg-zinc-50 p-8 border border-zinc-200 sticky top-24">
                  <div className="flex items-center gap-2 mb-6">
                     <Mic2 size={20} className="text-apex-orange" />
-                    <h3 className="font-heading text-xl font-bold uppercase">The People's Voice</h3>
+                    <h3 className="font-heading text-xl font-bold uppercase">Fan Verdict</h3>
                  </div>
-                 <p className="font-bold text-lg mb-6 leading-tight">Who wins the trash talk battle: Siba or Sizwe?</p>
+                 <p className="font-bold text-lg mb-6 leading-tight">Who is winning the psychological warfare?</p>
                  
                  {!pollVoted ? (
                     <div className="space-y-3">
@@ -205,35 +265,6 @@ const VulgarBroadcasting: React.FC = () => {
                        <p className="text-xs text-center text-zinc-500 mt-4 italic">Thanks for voting. 15,402 votes total.</p>
                     </div>
                  )}
-              </div>
-
-              {/* Audio Only Section */}
-              <div className="bg-black text-white p-8 relative overflow-hidden group cursor-pointer">
-                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-                 <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-2 text-apex-orange">
-                       <Radio size={20} />
-                       <span className="text-xs font-bold uppercase tracking-widest">Audio Only</span>
-                    </div>
-                    <h3 className="font-heading text-2xl font-bold uppercase mb-1">Apex Radio 24/7</h3>
-                    <p className="text-zinc-500 text-sm mb-6">Classic fights, commentary & lo-fi beats.</p>
-                    <div className="flex items-center justify-between bg-zinc-900 p-4 rounded-sm">
-                       <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-zinc-800 flex items-center justify-center">
-                             <div className="flex gap-0.5 items-end h-4">
-                                <div className="w-1 bg-apex-orange h-2 animate-[pulse_1s_ease-in-out_infinite]"></div>
-                                <div className="w-1 bg-apex-orange h-4 animate-[pulse_1.5s_ease-in-out_infinite]"></div>
-                                <div className="w-1 bg-apex-orange h-3 animate-[pulse_0.8s_ease-in-out_infinite]"></div>
-                             </div>
-                          </div>
-                          <div>
-                             <div className="text-xs font-bold uppercase text-zinc-400">Now Playing</div>
-                             <div className="text-sm font-bold">Rumble in the Jungle (1974)</div>
-                          </div>
-                       </div>
-                       <Play size={20} className="fill-white" />
-                    </div>
-                 </div>
               </div>
 
            </div>

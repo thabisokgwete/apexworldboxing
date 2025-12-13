@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
         {/* Map Placeholder / Footer Area */}
         <div className="mt-20 border-t border-zinc-200 pt-12">
            <div className="w-full h-64 bg-zinc-100 flex items-center justify-center border border-zinc-200 grayscale hover:grayscale-0 transition-all duration-500 group cursor-pointer relative overflow-hidden">
-             <img src="https://picsum.photos/1200/400?grayscale" alt="Map" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+             <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1200&auto=format&fit=crop" alt="Map" className="absolute inset-0 w-full h-full object-cover opacity-20" />
              <div className="relative z-10 flex flex-col items-center">
                 <MapPin className="text-apex-orange mb-2 group-hover:scale-110 transition-transform" size={40} />
                 <span className="font-heading font-bold text-black uppercase tracking-widest bg-white/80 px-4 py-1 backdrop-blur-sm shadow-sm">View Headquarters Map</span>

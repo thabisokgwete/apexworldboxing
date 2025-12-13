@@ -21,7 +21,7 @@ const Events: React.FC = () => {
         <section className="relative h-[70vh] w-full flex items-center overflow-hidden bg-black text-white">
           {/* Background */}
           <div className="absolute inset-0 z-0">
-             <img src="https://picsum.photos/1920/1080?grayscale&contrast=2" alt="Event Bg" className="w-full h-full object-cover opacity-40" />
+             <img src="https://images.unsplash.com/photo-1542385317-0749e7591b65?q=80&w=1920&auto=format&fit=crop" alt="Event Bg" className="w-full h-full object-cover opacity-40" />
              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
           </div>

@@ -1,26 +1,27 @@
 import React from 'react';
 import { Target, Award, Users, Zap } from 'lucide-react';
+import ImageUploader from '../components/ImageUploader';
 
 const DIRECTORS = [
   {
     id: 1,
     name: "Thabiso 'Dazille' Kgwete",
     role: "Chief Executive Officer",
-    image: "https://picsum.photos/400/400?random=50",
+    image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=800&auto=format&fit=crop", // Confident black man portrait
     bio: "Founder and executive director of ABE. Performance artist."
   },
   {
     id: 2,
     name: "Victoria Vance",
     role: "Head of Boxing Operations",
-    image: "https://picsum.photos/400/400?random=51",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop", // Business woman
     bio: "Renowned matchmaker with an eye for talent. She ensures every fight card delivers maximum violence and skill."
   },
   {
     id: 3,
     name: "Marcus Thorne",
     role: "Director of Broadcast & Media",
-    image: "https://picsum.photos/400/400?random=52",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop", // Business man
     bio: "The mind behind the cinematic production values and the controversial 'Vulgar' broadcasting division."
   }
 ];
@@ -31,7 +32,7 @@ const About: React.FC = () => {
       {/* Hero Section */}
       <div className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-white border-b border-zinc-100">
         <img 
-          src="https://picsum.photos/1920/1080?grayscale&blur=2" 
+          src="https://images.unsplash.com/photo-1591117207239-012581f5c68b?q=80&w=1920&auto=format&fit=crop" 
           alt="Empty Boxing Ring" 
           className="absolute inset-0 w-full h-full object-cover opacity-10"
         />
@@ -39,10 +40,10 @@ const About: React.FC = () => {
         
         <div className="relative z-10 text-center max-w-4xl px-4 mt-20">
           <h1 className="font-sans font-black text-6xl md:text-8xl text-black uppercase tracking-tighter mb-8 leading-none">
-            We Are <span className="text-apex-orange">ABE</span>.
+            We Are ABE<span className="text-apex-orange">.</span>
           </h1>
           <p className="text-2xl md:text-3xl text-zinc-600 font-light max-w-3xl mx-auto">
-            Redefining the sweet science for the modern era.
+            A world of apex performers, personalities, and competitors.
           </p>
         </div>
       </div>
@@ -53,9 +54,6 @@ const About: React.FC = () => {
         <div className="bg-white p-10 md:p-16 border border-zinc-200 shadow-xl mb-24">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <div className="w-full md:w-1/2">
-              <div className="inline-block px-4 py-1.5 bg-zinc-100 text-zinc-500 text-sm font-bold uppercase tracking-widest mb-6 rounded-sm">
-                Our Story
-              </div>
               <h2 className="font-heading text-5xl font-bold text-black uppercase mb-8 leading-tight">
                 The Apex of <br/>Global Combat
               </h2>
@@ -154,12 +152,14 @@ const About: React.FC = () => {
             {DIRECTORS.map((director) => (
               <div key={director.id} className="group bg-white border border-zinc-200 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                 <div className="h-96 overflow-hidden relative">
-                  <img 
-                    src={director.image} 
-                    alt={director.name} 
-                    className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                  <ImageUploader 
+                    defaultSrc={director.image}
+                    storageKey={`director_${director.id}`}
+                    alt={director.name}
+                    className="w-full h-full"
+                    imgClassName="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 <div className="p-8 relative bg-white">
                   <div className="absolute top-0 left-0 w-full h-1 bg-apex-orange transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
