@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FIGHTERS } from '../constants';
 import FighterCard from '../components/FighterCard';
@@ -16,6 +17,7 @@ const LEAGUE_DATA = FIGHTERS.map((f, index) => {
 
   return {
     ...f,
+    weightClass: 'Lightweight',
     rank: index + 1,
     points,
     movement,
@@ -29,16 +31,19 @@ const LEAGUE_DATA = FIGHTERS.map((f, index) => {
   };
 }).sort((a, b) => a.rank - b.rank);
 
+// Local roster with overwritten weight class for consistency on this page
+const LOCAL_ROSTER = FIGHTERS.map(f => ({ ...f, weightClass: 'Lightweight' }));
+
 const MotionLeague: React.FC = () => {
   const [viewMode, setViewMode] = useState<'standings' | 'roster'>('standings');
-  const [activeTab, setActiveTab] = useState<'Overall' | 'Heavyweight' | 'Bantamweight'>('Overall');
+  const [activeTab, setActiveTab] = useState<'Overall' | 'Lightweight'>('Overall');
   const [rosterSearchTerm, setRosterSearchTerm] = useState('');
 
   const filteredLeagueData = activeTab === 'Overall' 
     ? LEAGUE_DATA 
     : LEAGUE_DATA.filter(f => f.weightClass === activeTab);
 
-  const filteredRoster = FIGHTERS.filter(f => 
+  const filteredRoster = LOCAL_ROSTER.filter(f => 
     f.name.toLowerCase().includes(rosterSearchTerm.toLowerCase()) || 
     f.nickname.toLowerCase().includes(rosterSearchTerm.toLowerCase()) ||
     f.weightClass.toLowerCase().includes(rosterSearchTerm.toLowerCase())
@@ -48,24 +53,13 @@ const MotionLeague: React.FC = () => {
     <div className="min-h-screen bg-white pb-24">
       
       {/* Hero Header Section */}
-      <div className="relative bg-zinc-900 text-white py-24 overflow-hidden border-b border-zinc-200">
-        {/* Background Image */}
-        <div className="absolute inset-0 opacity-40">
-          <img 
-            src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1920&auto=format&fit=crop" 
-            alt="Motion League Background" 
-            className="w-full h-full object-cover" 
-          />
-        </div>
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-        
+      <div className="relative bg-black text-white py-24 overflow-hidden border-b border-zinc-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center space-x-3 mb-6">
             <div className="p-2 bg-zinc-800 rounded-sm border border-zinc-700">
               <Trophy className="text-apex-orange" size={32} />
             </div>
-            <span className="font-bold uppercase tracking-widest text-sm text-apex-orange">Official Rankings</span>
+            <span className="font-black uppercase tracking-widest text-xl text-apex-orange">2026/27 League Season</span>
           </div>
           
           <h1 className="font-heading font-black text-7xl md:text-9xl uppercase tracking-tighter leading-none mb-6 text-white">
@@ -73,7 +67,7 @@ const MotionLeague: React.FC = () => {
           </h1>
           
           <p className="text-zinc-400 text-xl md:text-2xl max-w-3xl font-light leading-relaxed">
-            The heartbeat of ApexWorld. Track live standings, analyze fighter form, and follow the rise of the next champion.
+            The Official boxing league of ABE. Follow your favourite fighters. Track live standings, analyze fighter form, and follow the rise of the next champion.
           </p>
         </div>
       </div>
@@ -110,7 +104,7 @@ const MotionLeague: React.FC = () => {
             {/* Filter Tabs */}
             <div className="flex justify-end mb-4">
               <div className="inline-flex bg-zinc-100 border border-zinc-200 rounded-sm p-1">
-                  {['Overall', 'Heavyweight', 'Bantamweight'].map((tab) => (
+                  {['Overall', 'Lightweight'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab as any)}

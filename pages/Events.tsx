@@ -21,9 +21,7 @@ const Events: React.FC = () => {
         <section className="relative h-[70vh] w-full flex items-center overflow-hidden bg-black text-white">
           {/* Background */}
           <div className="absolute inset-0 z-0">
-             <img src="https://images.unsplash.com/photo-1542385317-0749e7591b65?q=80&w=1920&auto=format&fit=crop" alt="Event Bg" className="w-full h-full object-cover opacity-40" />
-             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
-             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
+             <div className="absolute inset-0 opacity-30"></div>
           </div>
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
@@ -47,7 +45,7 @@ const Events: React.FC = () => {
 
                 <div className="flex gap-4">
                    <button className="bg-apex-orange text-white px-8 py-4 font-heading font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
-                      Buy PPV
+                      Buy Ticket
                    </button>
                    <button className="border border-white text-white px-8 py-4 font-heading font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
                       Fight Card
@@ -80,10 +78,7 @@ const Events: React.FC = () => {
          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-xs font-bold uppercase tracking-widest">
             <span className="flex items-center mb-2 md:mb-0"><Tv size={16} className="mr-2 text-apex-orange" /> Where to Watch:</span>
             <div className="flex items-center space-x-8">
-               <span className="hover:text-white cursor-pointer transition-colors">DAZN Worldwide</span>
-               <span className="hover:text-white cursor-pointer transition-colors">ESPN+ (USA)</span>
-               <span className="hover:text-white cursor-pointer transition-colors">Sky Sports Box Office (UK)</span>
-               <span className="hover:text-white cursor-pointer transition-colors">ABE.TV (Global)</span>
+               <span className="hover:text-white cursor-pointer transition-colors">Vulgar Broadcasting</span>
             </div>
          </div>
       </div>
@@ -216,7 +211,7 @@ const Events: React.FC = () => {
         
         {/* Newsletter Signup */}
         <div className="mt-24 bg-zinc-900 text-white p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+            <div className="absolute inset-0 opacity-10"></div>
             <div className="relative z-10 max-w-2xl mx-auto">
                <h3 className="font-heading text-3xl font-bold uppercase mb-4">Never Miss a Knockout</h3>
                <p className="text-zinc-400 mb-8">Sign up for fight alerts, ticket pre-sales, and exclusive locker room access.</p>

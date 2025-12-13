@@ -1,7 +1,7 @@
+
 import React, { useState } from 'react';
 import { EVENTS, MERCHANDISE } from '../constants';
 import { ShoppingBag, Ticket, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
-import ImageUploader from '../components/ImageUploader';
 
 const Shop: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -9,12 +9,7 @@ const Shop: React.FC = () => {
   return (
     <div className="min-h-screen bg-white pt-12 pb-24">
       {/* Hero Banner */}
-      <div className="relative bg-zinc-900 text-white mb-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1920&auto=format&fit=crop" alt="Shop Background" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-        
+      <div className="relative bg-black text-white mb-20 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="flex items-center space-x-2 text-apex-orange mb-4">
             <ShoppingBag size={24} />
@@ -105,19 +100,17 @@ const Shop: React.FC = () => {
               .map((item) => (
               <div key={item.id} className="group cursor-pointer">
                 <div className="relative overflow-hidden bg-zinc-50 mb-4 aspect-square border border-zinc-100">
-                  <ImageUploader 
-                    defaultSrc={item.image}
-                    storageKey={`shop_item_${item.id}`}
-                    alt={item.name}
-                    className="w-full h-full"
-                    imgClassName="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                   />
                   {item.tag && (
-                    <div className="absolute top-4 left-4 bg-apex-orange text-white text-[10px] font-bold uppercase px-2 py-1 pointer-events-none">
+                    <div className="absolute top-4 left-4 bg-apex-orange text-white text-[10px] font-bold uppercase px-2 py-1">
                       {item.tag}
                     </div>
                   )}
-                  <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none">
+                  <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <button className="w-full bg-black text-white py-3 font-heading font-bold uppercase tracking-widest text-sm hover:bg-apex-orange transition-colors shadow-xl">
                       Add to Cart
                     </button>
@@ -147,8 +140,8 @@ const Shop: React.FC = () => {
           <div className="flex items-center space-x-4">
             <Truck size={32} className="text-apex-orange" />
             <div>
-              <h4 className="font-heading font-bold uppercase text-black">Global Shipping</h4>
-              <p className="text-xs text-zinc-500">Delivery to over 150 countries worldwide.</p>
+              <h4 className="font-heading font-bold uppercase text-black">Local Shipping</h4>
+              <p className="text-xs text-zinc-500">Deliver to major towns and cities in Gauteng.</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">

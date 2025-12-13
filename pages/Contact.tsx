@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Send, User, MessageSquare, Briefcase, Globe } from 'lucide-react';
 
@@ -20,25 +21,25 @@ const Contact: React.FC = () => {
     {
       icon: Briefcase,
       title: "Corporate HQ",
-      content: "ApexWorld Entertainment\n3400 Las Vegas Blvd S\nLas Vegas, NV 89109",
+      content: "ApexWorld Entertainment\nPioneer Drive, Blue Lakes Estate,\nKleinfontein,\nBenoni\n1501",
       action: "View Map"
     },
     {
       icon: Mail,
       title: "General Inquiries",
-      content: "info@apexworld.com\npress@apexworld.com",
+      content: "apexworldboxing@gmail.com",
       action: "Email Us"
     },
     {
       icon: Phone,
       title: "Phone Support",
-      content: "+1 (702) 555-0199\nMon-Fri, 9am - 6pm PST",
+      content: "+27 655 858 772\nMon-Fri, 9am - 6pm SAST",
       action: "Call Now"
     },
     {
       icon: Globe,
       title: "Sponsorships",
-      content: "partners@apexworld.com\nGlobal Brand Partnerships",
+      content: "apexworldboxing@gmail.com\nGlobal Brand Partnerships",
       action: "Apply"
     }
   ];
@@ -177,7 +178,7 @@ const Contact: React.FC = () => {
         {/* Map Placeholder / Footer Area */}
         <div className="mt-20 border-t border-zinc-200 pt-12">
            <div className="w-full h-64 bg-zinc-100 flex items-center justify-center border border-zinc-200 grayscale hover:grayscale-0 transition-all duration-500 group cursor-pointer relative overflow-hidden">
-             <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1200&auto=format&fit=crop" alt="Map" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+             <img src="" alt="Map" className="absolute inset-0 w-full h-full object-cover opacity-20" />
              <div className="relative z-10 flex flex-col items-center">
                 <MapPin className="text-apex-orange mb-2 group-hover:scale-110 transition-transform" size={40} />
                 <span className="font-heading font-bold text-black uppercase tracking-widest bg-white/80 px-4 py-1 backdrop-blur-sm shadow-sm">View Headquarters Map</span>

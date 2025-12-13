@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { EVENTS, FIGHTERS, NEWS_UPDATES, BROADCAST_HIGHLIGHTS, MERCHANDISE } from '../constants';
 import EventCard from '../components/EventCard';
 import FighterCard from '../components/FighterCard';
-import ImageUploader from '../components/ImageUploader';
 import { ArrowRight, Zap, Trophy, Flame, Play, Radio, Newspaper, TrendingUp, ShoppingBag, Clock } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -15,22 +15,16 @@ const Home: React.FC = () => {
       <section className="relative min-h-[85vh] py-20 w-full flex items-center justify-center overflow-hidden">
         {/* Background Video/Image Placeholder */}
         <div className="absolute inset-0 z-0 bg-zinc-100">
-          <img 
-            src="https://images.unsplash.com/photo-1614869818815-56543b35582f?q=80&w=1920&auto=format&fit=crop" 
-            alt="Boxing Arena Spotlight" 
-            className="w-full h-full object-cover opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/50 to-white" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+          <div className="absolute inset-0 opacity-5"></div>
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl px-4">
+        <div className="relative z-10 text-center w-full max-w-7xl px-4">
           <div className="inline-flex items-center justify-center px-5 py-2 mb-8 border border-zinc-300 rounded-full bg-white/80 backdrop-blur-sm shadow-sm">
             <span className="w-2.5 h-2.5 bg-apex-orange rounded-full mr-3 animate-pulse"></span>
             <span className="text-zinc-800 text-sm font-bold uppercase tracking-widest">Next Event Live in 30 Days</span>
           </div>
           
-          <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl font-bold text-black uppercase tracking-tighter mb-4 leading-none">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-black uppercase tracking-tighter mb-4 leading-none whitespace-nowrap">
             Theatre of <span className="text-apex-orange">Fighters</span>
           </h1>
           
@@ -69,15 +63,13 @@ const Home: React.FC = () => {
             
             {/* Featured Story (Left Large) */}
             <div className="lg:col-span-7 relative group cursor-pointer overflow-hidden h-[600px] lg:h-auto border-r border-zinc-200">
-              <ImageUploader 
-                defaultSrc={NEWS_UPDATES[0].image}
-                storageKey="home_featured_news"
-                alt="News Featured"
-                className="w-full h-full"
-                imgClassName="transition-transform duration-700 group-hover:scale-105"
+              <img 
+                src={NEWS_UPDATES[0].image} 
+                alt="News Featured" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 p-10 w-full pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
+              <div className="absolute bottom-0 left-0 p-10 w-full">
                  <span className="inline-block bg-apex-orange text-black text-sm font-bold uppercase px-3 py-1 mb-4 rounded-sm">
                    {NEWS_UPDATES[0].category}
                  </span>
@@ -101,13 +93,7 @@ const Home: React.FC = () => {
                  <div key={news.id} className={`flex-1 relative group cursor-pointer overflow-hidden bg-white p-8 border-b border-zinc-200 ${index === NEWS_UPDATES.length - 2 ? 'border-b-0' : ''} hover:bg-zinc-100 transition-colors`}>
                     <div className="flex gap-6 h-full">
                        <div className="w-1/3 relative overflow-hidden">
-                          <ImageUploader 
-                            defaultSrc={news.image}
-                            storageKey={`home_news_${news.id}`}
-                            alt={news.headline}
-                            className="w-full h-full"
-                            imgClassName="group-hover:scale-110 transition-transform duration-500"
-                          />
+                          <img src={news.image} alt={news.headline} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                        </div>
                        <div className="w-2/3 flex flex-col justify-between py-1">
                           <div>

@@ -1,6 +1,6 @@
+
 import React, { useState } from 'react';
 import { Play, Radio, Flame, Mic2, MessageSquare, AlertTriangle, Users, ThumbsUp, Zap, Clock, Twitter, Camera } from 'lucide-react';
-import ImageUploader from '../components/ImageUploader';
 
 const FEATURED_STREAM = {
   title: "LIVE: Bad Boy Siba vs. Himothy Sizwe - The Final Confrontation",
@@ -43,25 +43,25 @@ const RECENT_CLIPS = [
     duration: "03:20",
     views: "2.4M",
     category: "Brawl",
-    image: "https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=800&auto=format&fit=crop", // Stare down/Push
+    image: "", // Image removed
     hot: true
   },
   {
     id: 2,
-    title: "Volkova: \"She's a paper champion and she knows it\"",
+    title: "King T: \"He's a paper champion and he knows it\"",
     duration: "08:15",
     views: "500K",
     category: "Trash Talk",
-    image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=800&auto=format&fit=crop", // Female boxer talking
+    image: "", // Image removed
     hot: false
   },
   {
     id: 3,
-    title: "Mensah Mic Drop Moment - Full Uncut Rant",
+    title: "Magic Kelly Mic Drop Moment - Full Uncut Rant",
     duration: "05:50",
     views: "890K",
     category: "Interview",
-    image: "https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=800&auto=format&fit=crop", // Boxer interview
+    image: "", // Image removed
     hot: true
   },
   {
@@ -70,7 +70,7 @@ const RECENT_CLIPS = [
     duration: "45:10",
     views: "1.2M",
     category: "Podcast",
-    image: "https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?q=80&w=800&auto=format&fit=crop", // Mic/Studio
+    image: "", // Image removed
     hot: false
   }
 ];
@@ -88,16 +88,16 @@ const VulgarBroadcasting: React.FC = () => {
 
       {/* Brand Header */}
       <div className="bg-black pt-20 pb-12 border-b border-zinc-800 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
+        <div className="absolute inset-0 opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center md:text-left">
             <h1 className="font-heading font-black text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-2 text-apex-orange">
               Vulgar Broadcast
             </h1>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-zinc-400 uppercase tracking-widest mb-6">
-              Uncensored & Unscripted
+              FEED THE FEUD
             </h2>
             <p className="text-zinc-400 text-xl max-w-2xl font-light">
-              Where the PR team has no power. Raw audio, uncensored opinions, and backstage access that television networks won't touch.
+              The most uncensored and unscripted boxing feud content in South Africa. Speak your truth, defend your position, and unapologetically fight for your pride.
             </p>
         </div>
       </div>
@@ -107,19 +107,13 @@ const VulgarBroadcasting: React.FC = () => {
         {/* Live Stream Container */}
         <div className="bg-black border border-zinc-800 rounded-sm overflow-hidden mb-12 shadow-2xl relative group">
           <div className="aspect-video bg-zinc-900 relative">
-             <ImageUploader 
-               defaultSrc="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=1200&auto=format&fit=crop"
-               storageKey="vulgar_live_stream"
-               alt="Stream Preview"
-               className="w-full h-full"
-               imgClassName="opacity-60"
-             />
-             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <button className="bg-apex-orange text-black rounded-full p-6 shadow-[0_0_30px_rgba(234,179,8,0.5)]">
+             <img src="" alt="Stream Preview" className="w-full h-full object-cover opacity-60" />
+             <div className="absolute inset-0 flex items-center justify-center">
+                <button className="bg-apex-orange text-black rounded-full p-6 hover:scale-110 transition-transform shadow-[0_0_30px_rgba(234,179,8,0.5)]">
                    <Play size={40} className="fill-black" />
                 </button>
              </div>
-             <div className="absolute top-6 left-6 flex gap-3 pointer-events-none">
+             <div className="absolute top-6 left-6 flex gap-3">
                <span className="bg-red-600 text-white px-3 py-1 text-xs font-bold uppercase tracking-widest animate-pulse flex items-center">
                  <Radio size={12} className="mr-2" /> Live
                </span>
@@ -188,14 +182,8 @@ const VulgarBroadcasting: React.FC = () => {
                  {RECENT_CLIPS.map((clip) => (
                    <div key={clip.id} className="flex flex-col sm:flex-row gap-6 group cursor-pointer border-b border-zinc-100 pb-6 last:border-0">
                       <div className="sm:w-64 aspect-video relative overflow-hidden bg-zinc-100 flex-shrink-0">
-                         <ImageUploader 
-                           defaultSrc={clip.image}
-                           storageKey={`vulgar_clip_${clip.id}`}
-                           alt={clip.title}
-                           className="w-full h-full"
-                           imgClassName="group-hover:scale-110 transition-transform duration-500"
-                         />
-                         <div className="absolute bottom-2 right-2 bg-black text-white text-[10px] font-bold px-1.5 py-0.5 pointer-events-none">
+                         <img src={clip.image} alt={clip.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                         <div className="absolute bottom-2 right-2 bg-black text-white text-[10px] font-bold px-1.5 py-0.5">
                             {clip.duration}
                          </div>
                       </div>
