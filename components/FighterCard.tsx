@@ -1,7 +1,6 @@
 import React from 'react';
 import { Fighter } from '../types';
 import { Trophy, Ruler, Scale } from 'lucide-react';
-import ImageUploader from './ImageUploader';
 
 interface FighterCardProps {
   fighter: Fighter;
@@ -17,18 +16,16 @@ const FighterCard: React.FC<FighterCardProps> = ({ fighter, compact = false, onC
     >
       {/* Image Background */}
       <div className="absolute inset-0 z-0 bg-zinc-100">
-        <ImageUploader 
-          defaultSrc={fighter.image}
-          storageKey={`fighter_${fighter.id}`}
+        <img 
+          src={fighter.image} 
           alt={fighter.name}
-          className="w-full h-full"
-          imgClassName="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0"
+          className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mt-auto p-6 pointer-events-none">
+      <div className="relative z-10 mt-auto p-6">
         {/* Weight Class Badge */}
         <div className="mb-2 inline-block px-2 py-0.5 bg-apex-orange text-white text-[10px] font-bold uppercase tracking-widest rounded-sm shadow-sm">
           {fighter.weightClass}
