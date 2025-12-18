@@ -1,10 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { EVENTS, FIGHTERS, NEWS_UPDATES, BROADCAST_HIGHLIGHTS, MERCHANDISE } from '../constants';
-import EventCard from '../components/EventCard';
-import FighterCard from '../components/FighterCard';
-import { ArrowRight, Zap, Trophy, Flame, Play, Radio, Newspaper, TrendingUp, ShoppingBag, Clock } from 'lucide-react';
+import { EVENTS, NEWS_UPDATES, BROADCAST_HIGHLIGHTS } from '../constants';
+import { Play, Newspaper, Clock } from 'lucide-react';
 
 const Home: React.FC = () => {
   const nextEvent = EVENTS[0];
@@ -149,41 +147,6 @@ const Home: React.FC = () => {
                      <h3 className="font-heading text-2xl font-bold uppercase leading-tight group-hover:text-apex-orange transition-colors">
                         {clip.title}
                      </h3>
-                  </div>
-               ))}
-            </div>
-         </div>
-      </section>
-
-      {/* Merchandise Teaser */}
-      <section className="py-24 bg-white">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-               <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tighter mb-4 text-black">
-                  Wear The <span className="text-apex-orange">Brand</span>
-               </h2>
-               <Link to="/shop" className="inline-flex items-center text-zinc-500 font-bold uppercase tracking-widest hover:text-black transition-colors">
-                  Visit Official Shop <ArrowRight size={16} className="ml-2" />
-               </Link>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-               {MERCHANDISE.slice(0, 4).map(item => (
-                  <div key={item.id} className="group cursor-pointer">
-                     <div className="bg-zinc-50 aspect-square overflow-hidden mb-4 relative">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" />
-                        {item.tag && (
-                           <div className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold uppercase px-2 py-1">
-                              {item.tag}
-                           </div>
-                        )}
-                     </div>
-                     <div className="text-center">
-                        <h3 className="font-heading text-lg font-bold uppercase text-black mb-1 group-hover:text-apex-orange transition-colors">
-                           {item.name}
-                        </h3>
-                        <p className="font-sans font-bold text-zinc-500">{item.price}</p>
-                     </div>
                   </div>
                ))}
             </div>

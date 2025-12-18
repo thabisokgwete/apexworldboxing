@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { EVENTS, MERCHANDISE } from '../constants';
-import { ShoppingBag, Ticket, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
+import { MERCHANDISE } from '../constants';
+import { ShoppingBag, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
 
 const Shop: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -16,10 +16,10 @@ const Shop: React.FC = () => {
             <span className="font-bold uppercase tracking-widest text-sm">Official Store</span>
           </div>
           <h1 className="font-heading text-5xl md:text-7xl font-bold uppercase leading-none mb-6">
-            World of <span className="text-apex-orange">Fighters</span>.
+            Wear the <span className="text-apex-orange">Brand</span>.
           </h1>
           <p className="text-zinc-400 max-w-xl text-lg mb-8">
-            Official fight kits, training gear, and exclusive event tickets. 
+            Official fight kits and training gear. 
             The only place to get authentic ABE merchandise.
           </p>
           <button className="bg-white text-black px-8 py-3 font-heading font-bold uppercase tracking-widest hover:bg-apex-orange hover:text-white transition-colors">
@@ -30,45 +30,6 @@ const Shop: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* TICKETS SECTION */}
-        <div className="mb-24">
-          <div className="flex items-center justify-between mb-8 border-b border-zinc-100 pb-4">
-            <h2 className="font-heading text-4xl font-bold uppercase text-black flex items-center">
-              <Ticket className="mr-3 text-apex-orange" /> Event Tickets
-            </h2>
-            <a href="/events" className="text-sm font-bold uppercase text-zinc-500 hover:text-apex-orange transition-colors">
-              View Full Schedule
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {EVENTS.map((event) => (
-              <div key={event.id} className="bg-white border border-zinc-200 p-0 flex flex-col md:flex-row overflow-hidden hover:border-apex-orange transition-colors group shadow-sm hover:shadow-md">
-                <div className="bg-zinc-900 text-white p-6 md:w-1/3 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-apex-orange opacity-0 group-hover:opacity-10 transition-opacity" />
-                  <span className="text-3xl font-heading font-bold">{event.date.split(' ')[1]}</span>
-                  <span className="text-sm uppercase tracking-widest text-zinc-400">{event.date.split(' ')[0]}</span>
-                  <span className="mt-2 text-xs font-bold uppercase bg-white/10 px-2 py-1 rounded">{event.status}</span>
-                </div>
-                <div className="p-6 md:w-2/3 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-heading text-2xl font-bold uppercase leading-tight mb-2">{event.title}</h3>
-                    <p className="text-zinc-500 text-sm flex items-center mb-4">
-                      {event.venue}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between mt-4">
-                    <div className="text-lg font-bold">From {event.price}</div>
-                    <button className="bg-black text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-apex-orange transition-colors">
-                      Select Seats
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* MERCHANDISE SECTION */}
         <div>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
