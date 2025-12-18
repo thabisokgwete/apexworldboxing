@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Tv, Users, Calendar, Trophy, Mail, Info, Radio, ShoppingBag, Building2, BrainCircuit } from 'lucide-react';
+import { Menu, X, Tv, Users, Calendar, Trophy, Mail, Info, Radio, ShoppingBag, BrainCircuit, UserPlus } from 'lucide-react';
 
 const NavItem = ({ to, icon: Icon, label, active, onClick }: any) => (
   <Link
@@ -23,11 +24,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const navLinks = [
     { to: '/', label: 'Home', icon: Tv },
+    { to: '/subscribe', label: 'Subscribe', icon: UserPlus },
     { to: '/events', label: 'Events', icon: Calendar },
     { to: '/vulgar', label: 'Vulgar', icon: Radio },
     { to: '/motion', label: 'Motion', icon: Trophy },
     { to: '/shop', label: 'Shop', icon: ShoppingBag },
-    { to: '/corporate', label: 'Corporate', icon: Building2 },
     { to: '/about', label: 'About', icon: Info },
     { to: '/contact', label: 'Contact', icon: Mail },
   ];
