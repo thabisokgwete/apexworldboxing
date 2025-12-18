@@ -73,7 +73,7 @@ export const EVENTS: Event[] = [
   {
     id: 'e1',
     title: 'ABE 45: Siba vs. Sizwe II',
-    date: 'Feb 14, 2025',
+    date: 'Feb 14, 2026',
     venue: 'Apex Arena, East Rand',
     mainEvent: {
       fighterAId: 'f1',
