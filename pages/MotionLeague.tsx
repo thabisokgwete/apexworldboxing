@@ -1,8 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FIGHTERS } from '../constants';
 import FighterCard from '../components/FighterCard';
-import { Trophy, TrendingUp, TrendingDown, Minus, Shield, Medal, ArrowRight, Users, Search, LayoutList } from 'lucide-react';
+import { 
+  Trophy, TrendingUp, TrendingDown, Minus, Shield, Medal, ArrowRight, Users, 
+  Search, LayoutList, UserPlus, ClipboardCheck, Phone, Mail, User, Activity 
+} from 'lucide-react';
 
 // Enhanced mock data for league display
 const LEAGUE_DATA = FIGHTERS.map((f, index) => {
@@ -35,9 +39,18 @@ const LEAGUE_DATA = FIGHTERS.map((f, index) => {
 const LOCAL_ROSTER = FIGHTERS.map(f => ({ ...f, weightClass: 'Lightweight' }));
 
 const MotionLeague: React.FC = () => {
-  const [viewMode, setViewMode] = useState<'standings' | 'roster'>('standings');
+  const location = useLocation();
+  const [viewMode, setViewMode] = useState<'standings' | 'roster' | 'register'>('standings');
   const [activeTab, setActiveTab] = useState<'Overall' | 'Lightweight'>('Overall');
   const [rosterSearchTerm, setRosterSearchTerm] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.openRegistration) {
+      setViewMode('register');
+    }
+  }, [location]);
 
   const filteredLeagueData = activeTab === 'Overall' 
     ? LEAGUE_DATA 
@@ -48,6 +61,15 @@ const MotionLeague: React.FC = () => {
     f.nickname.toLowerCase().includes(rosterSearchTerm.toLowerCase()) ||
     f.weightClass.toLowerCase().includes(rosterSearchTerm.toLowerCase())
   );
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsRegistering(true);
+    setTimeout(() => {
+      setIsRegistering(false);
+      setRegisterSuccess(true);
+    }, 1500);
+  };
 
   return (
     <div className="min-h-screen bg-white pb-24">
@@ -75,7 +97,7 @@ const MotionLeague: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
 
         {/* View Toggle */}
-        <div className="flex space-x-1 bg-zinc-100 p-1 rounded-sm mb-8 w-fit">
+        <div className="flex flex-wrap gap-1 bg-zinc-100 p-1 rounded-sm mb-8 w-fit">
           <button
             onClick={() => setViewMode('standings')}
             className={`flex items-center px-6 py-3 text-sm font-bold uppercase tracking-widest rounded-sm transition-all ${
@@ -94,7 +116,17 @@ const MotionLeague: React.FC = () => {
                 : 'text-zinc-500 hover:text-black hover:bg-zinc-200'
             }`}
           >
-            <Users size={16} className="mr-2" /> Official Roster
+            <Users size={16} className="mr-2" /> Official Fighters
+          </button>
+          <button
+            onClick={() => setViewMode('register')}
+            className={`flex items-center px-6 py-3 text-sm font-bold uppercase tracking-widest rounded-sm transition-all ${
+              viewMode === 'register'
+                ? 'bg-apex-orange text-white shadow-md'
+                : 'text-zinc-500 hover:text-black hover:bg-zinc-200'
+            }`}
+          >
+            <UserPlus size={16} className="mr-2" /> Register to Fight
           </button>
         </div>
 
@@ -224,17 +256,6 @@ const MotionLeague: React.FC = () => {
               <div className="flex items-center"><div className="w-2 h-2 bg-green-600 rounded-full mr-2"></div> Win</div>
               <div className="flex items-center"><div className="w-2 h-2 bg-red-600 rounded-full mr-2"></div> Loss</div>
             </div>
-            
-            {/* Promo */}
-            <div className="mt-20 bg-black rounded-sm p-8 flex flex-col md:flex-row items-center justify-between border border-zinc-200 shadow-xl">
-              <div className="mb-6 md:mb-0">
-                <h3 className="font-heading text-3xl font-bold text-white uppercase mb-2">How Points Are Calculated</h3>
-                <p className="text-zinc-400 max-w-xl">Points are awarded based on quality of opposition, method of victory (KO/TKO bonuses), and activity. Inactivity penalties apply after 6 months.</p>
-              </div>
-              <button className="px-8 py-3 bg-white text-black font-heading font-bold uppercase tracking-widest hover:bg-zinc-200 transition-colors flex items-center">
-                Read Full Rules <ArrowRight size={16} className="ml-2" />
-              </button>
-            </div>
           </div>
         )}
 
@@ -265,6 +286,107 @@ const MotionLeague: React.FC = () => {
             ) : (
               <div className="text-center py-20 border border-dashed border-zinc-300 rounded-sm bg-zinc-50">
                 <p className="text-zinc-500 font-heading uppercase tracking-widest">No fighters found matching criteria.</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* FIGHTER REGISTRATION VIEW */}
+        {viewMode === 'register' && (
+          <div className="animate-in zoom-in duration-300 max-w-4xl mx-auto">
+            {registerSuccess ? (
+              <div className="bg-white border-2 border-apex-orange p-12 text-center shadow-2xl rounded-sm">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
+                  <ClipboardCheck size={40} />
+                </div>
+                <h2 className="font-heading text-4xl font-bold uppercase mb-4">Application Received</h2>
+                <p className="text-zinc-600 text-lg mb-8 max-w-md mx-auto">
+                  Your fighting profile has been submitted to ABE Matchmaking. Our scouts will review your record and reach out if there's a slot in the next card.
+                </p>
+                <button 
+                  onClick={() => { setRegisterSuccess(false); setViewMode('standings'); }}
+                  className="bg-black text-white px-10 py-4 font-heading font-bold uppercase tracking-widest hover:bg-apex-orange transition-all"
+                >
+                  Return to Standings
+                </button>
+              </div>
+            ) : (
+              <div className="bg-white border border-zinc-200 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-2 bg-apex-orange"></div>
+                <div className="p-8 md:p-12">
+                  <div className="flex items-center gap-4 mb-8">
+                    <Activity className="text-apex-orange" size={32} />
+                    <h2 className="font-heading text-4xl font-bold uppercase tracking-tighter">Fighter Registration</h2>
+                  </div>
+                  
+                  <p className="text-zinc-500 mb-10 text-lg border-l-4 border-zinc-100 pl-6">
+                    Aspiring to be an Apex Performer? Provide your combat credentials below. Only the elite will be scouted for the Motion League.
+                  </p>
+
+                  <form onSubmit={handleRegister} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Full Name</label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-3.5 text-zinc-400" size={18} />
+                        <input required type="text" className="w-full bg-zinc-50 border border-zinc-200 px-10 py-3 focus:border-apex-orange focus:outline-none transition-colors" placeholder="e.g. Thabiso Kgwete" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Fighting Alias / Nickname</label>
+                      <input type="text" className="w-full bg-zinc-50 border border-zinc-200 px-4 py-3 focus:border-apex-orange focus:outline-none transition-colors" placeholder='e.g. "The Juggernaut"' />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Weight Class</label>
+                      <select required className="w-full bg-zinc-50 border border-zinc-200 px-4 py-3 focus:border-apex-orange focus:outline-none transition-colors">
+                        <option value="">Select Weight</option>
+                        <option>Heavyweight</option>
+                        <option>Light Heavyweight</option>
+                        <option>Middleweight</option>
+                        <option>Welterweight</option>
+                        <option>Lightweight</option>
+                        <option>Bantamweight</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Amateur/Pro Record</label>
+                      <input required type="text" className="w-full bg-zinc-50 border border-zinc-200 px-4 py-3 focus:border-apex-orange focus:outline-none transition-colors" placeholder="e.g. 15-0 (10 KO)" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Email Address</label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-3.5 text-zinc-400" size={18} />
+                        <input required type="email" className="w-full bg-zinc-50 border border-zinc-200 px-10 py-3 focus:border-apex-orange focus:outline-none transition-colors" placeholder="fighter@gym.com" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Phone / WhatsApp</label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-3.5 text-zinc-400" size={18} />
+                        <input required type="tel" className="w-full bg-zinc-50 border border-zinc-200 px-10 py-3 focus:border-apex-orange focus:outline-none transition-colors" placeholder="+27 ..." />
+                      </div>
+                    </div>
+
+                    <div className="md:col-span-2 space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Why do you belong in ABE?</label>
+                      <textarea rows={4} className="w-full bg-zinc-50 border border-zinc-200 px-4 py-3 focus:border-apex-orange focus:outline-none transition-colors resize-none" placeholder="Describe your style, your drive, and your hunger for the championship."></textarea>
+                    </div>
+
+                    <div className="md:col-span-2 pt-4">
+                      <button 
+                        type="submit"
+                        disabled={isRegistering}
+                        className="w-full bg-black text-white py-5 font-heading font-bold uppercase tracking-widest text-xl hover:bg-apex-orange transition-all disabled:opacity-50"
+                      >
+                        {isRegistering ? 'Processing Application...' : 'Submit Credentials'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             )}
           </div>

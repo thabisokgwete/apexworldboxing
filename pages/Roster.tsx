@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FIGHTERS } from '../constants';
 import FighterCard from '../components/FighterCard';
@@ -19,7 +20,7 @@ const Roster: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h1 className="font-heading text-5xl md:text-6xl font-bold text-black uppercase tracking-tighter mb-2">
-              The Roster
+              The Fighters
             </h1>
             <p className="text-zinc-500 max-w-xl">
               Meet the gladiators of ApexWorld. From heavyweight champions to lightning-fast bantamweights.

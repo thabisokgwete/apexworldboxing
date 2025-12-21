@@ -1,52 +1,103 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { EVENTS, NEWS_UPDATES, BROADCAST_HIGHLIGHTS } from '../constants';
-import { Play, Newspaper, Clock } from 'lucide-react';
+import { EVENTS, NEWS_UPDATES } from '../constants';
+import { Newspaper, Clock, Target, ArrowRight } from 'lucide-react';
 
 const Home: React.FC = () => {
-  const nextEvent = EVENTS[0];
-  
   return (
     <div className="pb-20 bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] py-20 w-full flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] py-24 w-full flex items-center justify-center overflow-hidden">
         {/* Background Video/Image Placeholder */}
         <div className="absolute inset-0 z-0 bg-zinc-100">
           <div className="absolute inset-0 opacity-5"></div>
         </div>
 
         <div className="relative z-10 text-center w-full max-w-7xl px-4">
-          <div className="inline-flex items-center justify-center px-5 py-2 mb-8 border border-zinc-300 rounded-full bg-white/80 backdrop-blur-sm shadow-sm">
-            <span className="w-2.5 h-2.5 bg-apex-orange rounded-full mr-3 animate-pulse"></span>
-            <span className="text-zinc-800 text-sm font-bold uppercase tracking-widest">Next Event Live in 30 Days</span>
+          <div className="inline-flex items-center justify-center px-6 py-2.5 mb-10 border border-zinc-300 rounded-full bg-white/80 backdrop-blur-sm shadow-sm">
+            <span className="w-3 h-3 bg-apex-orange rounded-full mr-3 animate-pulse"></span>
+            <span className="text-zinc-800 text-base font-bold uppercase tracking-widest">Next Event Live in 30 Days</span>
           </div>
           
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-black uppercase tracking-tighter mb-4 leading-none whitespace-nowrap">
+          <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter mb-6 leading-[0.85] whitespace-nowrap">
             Theatre of <span className="text-apex-orange">Fighters</span>
           </h1>
           
-          <h2 className="font-heading text-2xl md:text-4xl font-bold text-zinc-800 uppercase tracking-[0.2em] mb-10">
+          <h2 className="font-heading text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-zinc-800 uppercase tracking-[0.15em] sm:tracking-[0.25em] mb-12 whitespace-nowrap overflow-hidden text-ellipsis">
             Champions and Egos
           </h2>
           
-          <p className="font-sans text-xl md:text-2xl text-zinc-600 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
+          <p className="font-sans text-2xl md:text-3xl lg:text-4xl text-zinc-600 max-w-5xl mx-auto mb-16 leading-relaxed font-medium">
             A world of triumph and loss.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/events" className="w-full sm:w-auto px-10 py-5 bg-black hover:bg-zinc-800 text-white font-heading font-bold uppercase tracking-widest text-lg transition-all transform hover:scale-105 shadow-lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <Link to="/events" className="w-full sm:w-auto px-14 py-6 bg-black hover:bg-zinc-800 text-white font-heading font-bold uppercase tracking-widest text-xl transition-all transform hover:scale-105 shadow-2xl">
               See Fight Cards
             </Link>
-            <Link to="/motion" className="w-full sm:w-auto px-10 py-5 bg-white border border-black/10 hover:bg-zinc-50 text-black font-heading font-bold uppercase tracking-widest text-lg transition-all backdrop-blur-sm shadow-sm">
-              View Roster
+            <Link to="/motion" className="w-full sm:w-auto px-14 py-6 bg-white border-4 border-black hover:bg-zinc-50 text-black font-heading font-bold uppercase tracking-widest text-xl transition-all backdrop-blur-sm shadow-xl">
+              View Fighters
             </Link>
           </div>
         </div>
       </section>
 
+      {/* ABE TOTAL TAKEOVER CAMPAIGN SECTION */}
+      <section className="relative bg-white overflow-hidden border-b-4 border-apex-orange py-16 md:py-24">
+        {/* Decorative background elements - lighter for light background */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none select-none overflow-hidden">
+          <div className="absolute -left-20 top-1/2 -rotate-12 font-heading font-black text-[20rem] text-black leading-none uppercase">TAKEOVER</div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-px w-12 bg-apex-orange hidden md:block"></div>
+              <span className="text-apex-orange font-heading font-bold uppercase tracking-[0.3em] text-xl md:text-2xl">2026 Fighters' Season</span>
+              <div className="h-px w-12 bg-apex-orange hidden md:block"></div>
+            </div>
+
+            <h2 className="font-heading text-5xl md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-4">
+              ABE TOTAL <br className="hidden md:block" />
+              TAKEOVER CAMPAIGN
+            </h2>
+            
+            <div className="bg-apex-orange text-black px-6 py-2 mb-12 transform -skew-x-12 inline-block">
+              <h3 className="font-heading text-3xl md:text-5xl font-bold uppercase tracking-widest skew-x-12 italic">
+                EAST RAND
+              </h3>
+            </div>
+
+            {/* TWO ACTION BOXES (Buttons) */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+              <Link 
+                to="/motion" 
+                state={{ openRegistration: true }}
+                className="bg-black text-white px-10 py-5 font-heading font-bold uppercase tracking-widest text-xl hover:bg-apex-orange transition-all flex items-center justify-center group shadow-xl"
+              >
+                Be a Fighter <ArrowRight size={20} className="ml-3 group-hover:translate-x-2 transition-transform" />
+              </Link>
+              
+              <Link 
+                to="/subscribe" 
+                className="bg-white border-4 border-black text-black px-10 py-5 font-heading font-bold uppercase tracking-widest text-xl hover:bg-black hover:text-white transition-all flex items-center justify-center group shadow-xl"
+              >
+                Be a Partner <ArrowRight size={20} className="ml-3 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom "Caution" Tape decorative element */}
+        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-apex-orange via-black to-apex-orange flex">
+           {Array(20).fill(0).map((_, i) => (
+             <div key={i} className="flex-1 h-full bg-apex-orange/20 border-r border-black/20"></div>
+           ))}
+        </div>
+      </section>
+
       {/* What's Happening Now! (Rich Article Grid) */}
-      <section className="border-y border-zinc-200 bg-zinc-50">
+      <section className="border-b border-zinc-200 bg-zinc-50">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="bg-black text-apex-orange flex items-center py-6 px-6 md:px-8 border-b-4 border-apex-orange border-r border-zinc-800">
@@ -111,48 +162,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Broadcast Highlights / Latest Clips */}
-      <section className="py-20 bg-zinc-900 text-white overflow-hidden relative">
-         <div className="absolute top-0 right-0 w-96 h-96 bg-apex-orange/10 rounded-full blur-[100px] pointer-events-none"></div>
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-               <div>
-                  <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter mb-2 flex items-center">
-                    <Play className="text-apex-orange mr-4 fill-current" size={40} /> Vulgar Broadcast
-                  </h2>
-                  <p className="text-zinc-500 text-lg max-w-xl">
-                     Exclusive interviews, weigh-in drama, and fight highlights.
-                  </p>
-               </div>
-               <Link to="/vulgar" className="mt-6 md:mt-0 text-white font-bold uppercase tracking-widest border-b border-apex-orange pb-1 hover:text-apex-orange transition-colors">
-                  Watch All Clips
-               </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               {BROADCAST_HIGHLIGHTS.map(clip => (
-                  <div key={clip.id} className="group cursor-pointer">
-                     <div className="relative aspect-video bg-zinc-800 overflow-hidden mb-4 border border-zinc-800 group-hover:border-apex-orange transition-colors">
-                        <img src={clip.image} alt={clip.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                           <div className="w-16 h-16 rounded-full bg-apex-orange/90 flex items-center justify-center transform scale-75 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
-                              <Play className="fill-black text-black ml-1" size={24} />
-                           </div>
-                        </div>
-                        <div className="absolute bottom-3 right-3 bg-black text-white text-xs font-bold px-2 py-1 rounded-sm">
-                           {clip.duration}
-                        </div>
-                     </div>
-                     <h3 className="font-heading text-2xl font-bold uppercase leading-tight group-hover:text-apex-orange transition-colors">
-                        {clip.title}
-                     </h3>
-                  </div>
-               ))}
-            </div>
-         </div>
-      </section>
-
     </div>
   );
 };

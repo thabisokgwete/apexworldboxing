@@ -5,7 +5,7 @@ import { Target, Award, Users, Zap } from 'lucide-react';
 const DIRECTORS = [
   {
     id: 1,
-    name: "Thabiso 'Hugo' Kgwete",
+    name: "Thabiso Kgwete",
     role: "Chief Executive Officer",
     image: "", // Image removed
     bio: "Founder and Executive Director of ABE. Corporate Finance Strategist. Visionary. Fighter. Performance Artist."
@@ -48,10 +48,10 @@ const About: React.FC = () => {
           <div className="w-full">
             <h2 className="font-heading text-4xl font-bold uppercase text-black mb-6">World of Fighters</h2>
             <p className="text-zinc-600 mb-6 leading-relaxed text-lg">
-              ApexWorld Boxing Entertainment is built on the belief that boxing is fundamentally a human confrontation before it is a sporting contest. At ABE, fighters are presented as complete individuals, driven by ambition, pride, insecurity, and the pressure to prove themselves under public scrutiny. We Feed the Feud by giving fighters a platform to speak their truth, defend your position, and fight, verbally and physically, for pride, reputation, and legacy.
+              ABE is a boxing promotions company that treats every bout as a live spectacle rather than a simple sporting contest. We regard boxing as theatre: a stage where fighters are not just athletes, but characters with ambition, ego, fear, pride, and something to prove. Every fight is framed as a narrative of tension and consequence, where preparation, personality, and pressure collide under the lights. We do not sanitize conflict; we present it honestly, allowing the raw drama of competition to unfold in front of a watching world.
             </p>
             <p className="text-zinc-600 leading-relaxed text-lg">
-              Every bout is framed as a human drama, every rivalry as a living narrative, and every fighter as more than a record. We do not sell fights in isolation; we build feuds, expose underlying motivations, and elevate conflict into spectacle. We develop protagonists and antagonists, highlight egos without shame, and allow authenticity to drive engagement. In contrast to promoters who ignore personalities and manage conflict cautiously, ABE amplifies it with structure and purpose, transforming competition into something visceral, engaging, and impossible to ignore. This is who we are.
+              Through ABE, fighters are elevated into protagonists of their own stories, and audiences are drawn into a world of anticipation, rivalry, triumph, and loss. We design events, content, and experiences that amplify stakes, expose human edge, and celebrate the courage it takes to step forward and be judged in public combat. In the Theatre of Fighters, victory is memorable, defeat is defining, and every appearance leaves a mark on the story being written.
             </p>
           </div>
         </div>
