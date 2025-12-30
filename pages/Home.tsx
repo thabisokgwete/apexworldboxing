@@ -19,7 +19,8 @@ const Home: React.FC = () => {
             <span className="text-zinc-800 text-base font-bold uppercase tracking-widest">Next Event Live in 30 Days</span>
           </div>
           
-          <h1 className="font-heading text-5xl md:text-7xl font-black text-black uppercase tracking-tighter mb-4 leading-none">
+          {/* text-[8.2vw] ensures the title fits on one line on almost any mobile screen width */}
+          <h1 className="font-heading text-[8.2vw] md:text-7xl font-black text-black uppercase tracking-tighter mb-4 leading-none whitespace-nowrap">
             Theatre of <span className="text-apex-orange">Fighters</span>
           </h1>
           
@@ -57,8 +58,9 @@ const Home: React.FC = () => {
               <div className="h-px w-12 bg-apex-orange hidden md:block"></div>
             </div>
 
-            <h2 className="font-heading text-4xl md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-4">
-              ABE TOTAL <br className="hidden md:block" />
+            {/* Forced break and viewport-width sizing ensures exactly two lines on mobile */}
+            <h2 className="font-heading text-[7.5vw] md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-4">
+              ABE TOTAL <br />
               TAKEOVER CAMPAIGN
             </h2>
             
