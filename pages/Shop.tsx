@@ -16,7 +16,7 @@ const Shop: React.FC = () => {
             <span className="font-bold uppercase tracking-widest text-sm">Official Store</span>
           </div>
           <h1 className="font-heading text-5xl md:text-7xl font-bold uppercase leading-none mb-6">
-            Wear the <span className="text-apex-orange">Brand</span>.
+            Wear the <span className="text-apex-orange">Brand</span>
           </h1>
           <p className="text-zinc-400 max-w-xl text-lg mb-8">
             Official fight kits and training gear. 

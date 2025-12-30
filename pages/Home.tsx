@@ -19,23 +19,23 @@ const Home: React.FC = () => {
             <span className="text-zinc-800 text-base font-bold uppercase tracking-widest">Next Event Live in 30 Days</span>
           </div>
           
-          <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter mb-6 leading-[0.85] whitespace-nowrap">
+          <h1 className="font-heading text-5xl md:text-7xl font-black text-black uppercase tracking-tighter mb-4 leading-none">
             Theatre of <span className="text-apex-orange">Fighters</span>
           </h1>
           
-          <h2 className="font-heading text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-zinc-800 uppercase tracking-[0.15em] sm:tracking-[0.25em] mb-12 whitespace-nowrap overflow-hidden text-ellipsis">
+          <h2 className="font-heading text-2xl md:text-4xl font-bold text-zinc-800 uppercase tracking-[0.2em] mb-12">
             Champions and Egos
           </h2>
           
-          <p className="font-sans text-2xl md:text-3xl lg:text-4xl text-zinc-600 max-w-5xl mx-auto mb-16 leading-relaxed font-medium">
+          <p className="font-sans text-xl md:text-2xl text-zinc-600 max-w-3xl mx-auto mb-16 leading-relaxed font-medium">
             A world of triumph and loss.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <Link to="/events" className="w-full sm:w-auto px-14 py-6 bg-black hover:bg-zinc-800 text-white font-heading font-bold uppercase tracking-widest text-xl transition-all transform hover:scale-105 shadow-2xl">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link to="/events" className="w-full sm:w-auto px-10 py-5 bg-black hover:bg-zinc-800 text-white font-heading font-bold uppercase tracking-widest text-lg transition-all transform hover:scale-105 shadow-2xl">
               See Fight Cards
             </Link>
-            <Link to="/motion" className="w-full sm:w-auto px-14 py-6 bg-white border-4 border-black hover:bg-zinc-50 text-black font-heading font-bold uppercase tracking-widest text-xl transition-all backdrop-blur-sm shadow-xl">
+            <Link to="/motion" className="w-full sm:w-auto px-10 py-5 bg-white border-4 border-black hover:bg-zinc-50 text-black font-heading font-bold uppercase tracking-widest text-lg transition-all backdrop-blur-sm shadow-xl">
               View Fighters
             </Link>
           </div>
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
               <div className="h-px w-12 bg-apex-orange hidden md:block"></div>
             </div>
 
-            <h2 className="font-heading text-5xl md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-4">
+            <h2 className="font-heading text-4xl md:text-8xl lg:text-9xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-4">
               ABE TOTAL <br className="hidden md:block" />
               TAKEOVER CAMPAIGN
             </h2>
