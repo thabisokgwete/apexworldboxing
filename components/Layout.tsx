@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Tv, Users, Calendar, Trophy, Mail, Info, Radio, ShoppingBag, BrainCircuit, UserPlus } from 'lucide-react';
@@ -27,7 +26,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { to: '/subscribe', label: 'Subscribe', icon: UserPlus },
     { to: '/events', label: 'Events', icon: Calendar },
     { to: '/vulgar', label: 'Vulgar', icon: Radio },
-    { to: '/motion', label: 'Motion', icon: Trophy },
+    { to: '/fighters', label: 'Fighters', icon: Trophy },
     { to: '/shop', label: 'Shop', icon: ShoppingBag },
     { to: '/about', label: 'About', icon: Info },
     { to: '/contact', label: 'Contact', icon: Mail },
@@ -41,13 +40,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <div className="flex justify-between h-20 items-center">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0 flex items-center group ml-0">
-              {/* Using img tag as requested for the uploaded logo. Assuming logo.png is in public root. */}
               <img 
                 src="/logo.png" 
                 alt="ABE Logo" 
                 className="h-16 w-auto object-contain" 
                 onError={(e) => {
-                  // Fallback in case image is missing, ensuring site remains usable
                   e.currentTarget.style.display = 'none';
                   e.currentTarget.nextElementSibling?.classList.remove('hidden');
                 }}
