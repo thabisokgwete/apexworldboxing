@@ -115,7 +115,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* FIGHTERS' ATTITUDE SECTION */}
-      <section className="pt-4 pb-24 md:pb-32 bg-white relative overflow-hidden">
+      <section className="pt-16 pb-24 md:pb-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-black uppercase tracking-tighter leading-none">
