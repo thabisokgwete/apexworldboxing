@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Check, Zap, Trophy, Video, Loader2, PartyPopper, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -31,7 +30,7 @@ const Subscribe: React.FC = () => {
           </p>
           <div className="space-y-4">
             <Link 
-              to="/motion" 
+              to="/fighters" 
               className="block w-full bg-black text-white py-4 font-heading font-bold uppercase tracking-widest hover:bg-zinc-800 transition-all flex items-center justify-center group"
             >
               Enter the League <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />

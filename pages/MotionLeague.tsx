@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FIGHTERS } from '../constants';
@@ -81,11 +80,11 @@ const MotionLeague: React.FC = () => {
             <div className="p-2 bg-zinc-800 rounded-sm border border-zinc-700">
               <Trophy className="text-apex-orange" size={32} />
             </div>
-            <span className="font-black uppercase tracking-widest text-xl text-apex-orange">2026/27 League Season</span>
+            <span className="font-black uppercase tracking-widest text-xl text-apex-orange">2026 Fighters' Season</span>
           </div>
           
           <h1 className="font-heading font-black text-7xl md:text-9xl uppercase tracking-tighter leading-none mb-6 text-white">
-            Motion <span className="text-apex-orange">League</span>
+            Fighters' <span className="text-apex-orange">League</span>
           </h1>
           
           <p className="text-zinc-400 text-xl md:text-2xl max-w-3xl font-light leading-relaxed">

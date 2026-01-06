@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Target, Award, Users, Zap } from 'lucide-react';
 
 const DIRECTORS = [
   {
     id: 1,
-    name: "Thabiso Kgwete",
+    name: "Thabiso Tharagi Kgwete",
     role: "Chief Executive Officer",
     image: "", // Image removed
     bio: "Founder and Executive Director of ABE. Corporate Finance Strategist. Visionary. Fighter. Performance Artist."
@@ -56,55 +55,6 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Our Attitude / IKANI Section */}
-        <div className="mb-12 relative overflow-hidden bg-white p-12 md:p-20 border border-zinc-200 shadow-sm">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-apex-orange/5 blur-[100px] rounded-full pointer-events-none"></div>
-          
-          <div className="relative z-10 text-center max-w-6xl mx-auto">
-            <h2 className="font-heading text-6xl md:text-8xl font-bold uppercase mb-20 tracking-tighter text-black">
-              Fighters' <span className="text-apex-orange">Attitude</span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-              <div className="bg-white border-2 border-apex-orange p-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[120px] md:col-span-2">
-                <p className="font-heading text-lg font-bold uppercase leading-tight text-black">
-                  The compulsion to resist, persist, and impose.
-                </p>
-              </div>
-              
-              <div className="bg-white border-2 border-apex-orange p-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[120px] md:col-span-2">
-                <p className="font-heading text-lg font-bold uppercase leading-tight text-black">
-                  The will to fight, compete, and win.
-                </p>
-              </div>
-              
-              <div className="bg-white border-2 border-apex-orange p-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[120px] md:col-span-2">
-                <p className="font-heading text-lg font-bold uppercase leading-tight text-black">
-                  The disposition to defy, dare, and dominate.
-                </p>
-              </div>
-              
-               <div className="bg-white border-2 border-apex-orange p-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[120px] md:col-span-2">
-                <p className="font-heading text-lg font-bold uppercase leading-tight text-black">
-                  The refusal to settle, submit, or concede.
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-apex-orange p-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[120px] md:col-span-2">
-                <p className="font-heading text-lg font-bold uppercase leading-tight text-black">
-                  The impulse for chaos, madness, and intensity.
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-apex-orange p-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[120px] md:col-span-2">
-                <p className="font-heading text-lg font-bold uppercase leading-tight text-black">
-                  The courage to lead through failure, pressure, and doubt.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Management Section */}
         <div>
           <div className="flex items-center justify-center mb-16">
@@ -118,7 +68,7 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {DIRECTORS.map((director) => (
               <div key={director.id} className="group bg-white border border-zinc-200 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="h-96 overflow-hidden relative">
+                <div className="h-72 overflow-hidden relative bg-zinc-50">
                   <img 
                     src={director.image} 
                     alt={director.name || director.role} 
